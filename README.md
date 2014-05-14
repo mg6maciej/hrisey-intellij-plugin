@@ -1,14 +1,8 @@
-lombok-intellij-plugin
+hrisey-intellij-plugin
 ======================
 
-## Plugin for IntelliJ IDEA to support Lombok annotations. ##
+## Plugin for IntelliJ IDEA and Android Studio to support Hrisey (Lombok for Android) annotations. ##
 
-Provides support for lombok annotations to write great Java code with IntelliJ IDEA.
+Aside from all the goodies in Lombok, this adds @Parcelable annotation support. See [Hrisey repo](https://github.com/mg6maciej/hrisey) for more info.
 
-Tested and supports IntelliJ versions: 10.5.4, 11.1.5, 12.1.7, 13.1.1
-
-With this plugin your IntelliJ can recognize all of generated getters, setters and some other things from lombok project, so that you get code completion and are able to work without errors stating the methods don't exists.
-
-
-
-[![Donate](https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3F9HXD7A2SMCN)
+This plugin is based on [Michail Plushnikov](https://github.com/mplushnikov)'s [lombok-intellij-plugin](https://github.com/mplushnikov/lombok-intellij-plugin).

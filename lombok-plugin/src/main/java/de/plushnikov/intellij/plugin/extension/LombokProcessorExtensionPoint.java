@@ -10,7 +10,7 @@ import java.util.Collection;
  * Date: 21.07.13 Time: 12:54
  */
 public class LombokProcessorExtensionPoint {
-  public static final ExtensionPointName<Processor> EP_NAME = ExtensionPointName.create("Lombook Plugin.processor");
+  public static final ExtensionPointName<Processor> EP_NAME = ExtensionPointName.create("Hrisey Plugin.processor");
 
   private static Collection<String> LOMBOK_ANNOTATIONS;
 

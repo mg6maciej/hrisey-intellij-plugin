@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<idea-plugin version="2" url="http://code.google.com/p/lombok-intellij-plugin">
-  <id>Lombook Plugin</id>
-  <name>Lombok Plugin</name>
-  <vendor url="https://github.com/mplushnikov/lombok-intellij-plugin" email="lombokplugin@plushnikov.de">Michail Plushnikov</vendor>
-  <version>0.8.7</version>
+<idea-plugin version="2" url="https://github.com/mg6maciej/hrisey-intellij-plugin">
+  <id>Hrisey Plugin</id>
+  <name>Hrisey Plugin</name>
+  <vendor url="https://github.com/mg6maciej" email="maciek.gorski@gmail.com">Maciej Górski</vendor>
+  <version>0.1.0</version>
 
   <idea-version since-build="133.00"/>
 
   <description><![CDATA[
-    A plugin that adds first-class support for Project Lombok
+    A plugin that adds first-class support for Hrisey (Lombok for Android)
     ]]>
   </description>
   <category>Tools Integration</category>
@@ -41,7 +41,7 @@
     <daemon.highlightInfoFilter implementation="de.plushnikov.intellij.plugin.extension.LombokHighlightErrorFilter"/>
   </extensions>
 
-  <extensions defaultExtensionNs="Lombook Plugin">
+  <extensions defaultExtensionNs="Hrisey Plugin">
     <processor implementation="de.plushnikov.intellij.plugin.processor.clazz.constructor.AllArgsConstructorProcessor"/>
     <processor implementation="de.plushnikov.intellij.plugin.processor.clazz.constructor.NoArgsConstructorProcessor"/>
     <processor implementation="de.plushnikov.intellij.plugin.processor.clazz.constructor.RequiredArgsConstructorProcessor"/>
@@ -173,6 +173,15 @@
   <!--TODO @Builder requires specifying 'builderClassName' if used on methods with a type parameter as return type.-->
   <!--TODO @Builder is not supported on constructors with constructor type parameters..-->
   <change-notes><![CDATA[
+    <h3>Hrisey plugin change notes:</h3>
+    <ul>
+      <li>0.1.0
+        <ol>
+          <li>Added support for @Parcelable annotation. Class still needs to have "implements android.os.Parcelable"</li>
+        </ol>
+      </li>
+    </ul>
+    <h3>Lombok plugin change notes:</h3>
 		<ul>
 		<li>0.8.7
 				<ol>
