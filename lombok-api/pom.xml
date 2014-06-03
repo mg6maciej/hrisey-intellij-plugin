@@ -25,7 +25,7 @@
       lombok/Actions.java,lombok/TypeArguments.java,lombok/Rethrow.java,lombok/Rethrows.java
     </lombok-pg-annotations.includes>
     <hrisey-annotations.includes>
-      hrisey/Parcelable.java
+      hrisey/Parcelable.java,hrisey/Preferences.java
     </hrisey-annotations.includes>
   </properties>
 

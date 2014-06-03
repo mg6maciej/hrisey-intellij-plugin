@@ -84,6 +84,7 @@
     <!-- hrisey -->
     <processor implementation="pl.mg6.hrisey.intellij.plugin.processor.clazz.ParcelableMethodsProcessor"/>
     <processor implementation="pl.mg6.hrisey.intellij.plugin.processor.clazz.ParcelableFieldsProcessor"/>
+    <processor implementation="pl.mg6.hrisey.intellij.plugin.processor.clazz.PreferencesMethodsProcessor"/>
   </extensions>
 
   <actions>
