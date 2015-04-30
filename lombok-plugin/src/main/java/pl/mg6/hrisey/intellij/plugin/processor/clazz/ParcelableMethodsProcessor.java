@@ -6,6 +6,7 @@ import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiClassType;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementFactory;
+import com.intellij.psi.PsiField;
 import com.intellij.psi.PsiMethod;
 import com.intellij.psi.PsiModifier;
 import com.intellij.psi.PsiType;
@@ -17,6 +18,7 @@ import de.plushnikov.intellij.plugin.util.PsiMethodUtil;
 import hrisey.Parcelable;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ParcelableMethodsProcessor extends AbstractClassProcessor {
@@ -61,15 +63,50 @@ public class ParcelableMethodsProcessor extends AbstractClassProcessor {
   private PsiElement generateParcelConstructor(PsiClass psiClass, PsiAnnotation psiAnnotation) {
     final StringBuilder builder = StringBuilderSpinAllocator.alloc();
     try {
-      if (!psiClass.hasModifierProperty("final")) {
+      if (!psiClass.hasModifierProperty(PsiModifer.FINAL)) {
         builder.append("protected ");
       }
       builder.append(psiClass.getName());
-      builder.append("(android.os.Parcel source) {\n}");
+      builder.append("(android.os.Parcel source) {\n");
+      generateFinalFieldInitializers(builder, psiClass);
+      builder.append("}");
 
       return PsiMethodUtil.createMethod(psiClass, builder.toString(), psiAnnotation);
     } finally {
       StringBuilderSpinAllocator.dispose(builder);
     }
+  }
+
+  private void generateFinalFieldInitializers(StringBuilder builder, PsiClass psiClass) {
+    if (!psiClass.isEnum() && !psiClass.isAnnotationType() && !psiClass.isInterface() {
+      for (PsiElement finalField : getFinalFieldsWithoutInitializers(psiClass.getFields())) {
+        builder.append("this.");
+        builder.append(finalField.getName());
+        builder.append(" = ");
+        builder.append(getFieldInitializerValue(finalField.getType()));
+        builder.append(";\n");
+      }
+    }
+  }
+
+  private List<PsiField> getFinalFieldsWithoutInitializers(PsiField[] psiFields) {
+    List<PsiField> finalFields = new ArrayList<PsiField>();
+    for (PsiField field : psiFields) {
+      if (field.hasModifierProperty(PsiModifer.FINAL) && !field.hasInitializer()) {
+        finalFields.add(field);
+      }
+    }
+    return finalFields;
+  }
+
+  private String getFieldInitializerValue(PsiType psiType) {
+    if (PsiType.BYTE.equals(psiType) || PsiType.CHAR.equals(psiType) || PsiType.DOUBLE.equals(psiType)
+        || PsiType.FLOAT.equals(psiType) || PsiType.INT.equals(psiType) || PsiType.LONG.equals(psiType)
+        || PsiType.SHORT.equals(psiType)) {
+      return "0";
+    } else if (PsiType.BOOLEAN.equals(psiType)) {
+      return "false";
+    }
+    return "null";
   }
 }
